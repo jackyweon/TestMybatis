@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: loc
+    
+#mybatis设置
+mybatis:
+  configuration:
+    #自动将列名在实体类中查找属性，这样就不用再写resultMap和字段与属性对应关系
+    map-underscore-to-camel-case: true
+    #全局性设置懒加载
+    lazy-loading-enabled: true
+    #当启用时，有延迟加载属性的对象在被调用时将会完全加载任意属性。否则，每种属性将会按需要加载
+    aggressive-lazy-loading: false
+    #解决插入null的时候报错问题
+    jdbc-type-for-null: NULL
+    #全局映射器启用缓存 *主要将此属性设置完成即可
+    cache-enabled: true
+    #对于未知的SQL查询，允许返回不同的结果集以达到通用的效果
+    multiple-result-sets-enabled: true
+  #设置实体类别名(不要写成com.sctele.tm.*.domain这样，会把tm-db下的MyMapper扫描进去，启动会报错)
+  type-aliases-package: com.sctele.tm.test.domain
+  #mapper文件的xml路径
+  mapper-locations: mapper/*.xml
+  
+#mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.sctele.tm.db.mapper.MyMapper
+  not-empty: false
+  identity: MYSQL  
+ 
